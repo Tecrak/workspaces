@@ -1,0 +1,51 @@
+.formBG {
+  background: rgba(0, 0, 0, 0.695);
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 10000;
+  pointer-events: all;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.formBG > form {
+  position: relative;
+  bottom: 100px;
+  background: rgb(54, 53, 53);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 25px;
+  gap: 5px;
+  font-size: 20px;
+}
+.formBG > form > input {
+  width: 330px;
+  font-size: 14px;
+  height: 35px;
+  text-align: center;
+  outline: none;
+}
+.formBG > form > button {
+  width: 100px;
+  background: rgb(7, 120, 3);
+  height: 30px;
+  font-weight: bold;
+  margin-top: 15px;
+  font-size: 16px;
+}
+.boardBlock {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.boardBlock > p {
+}
+.boardBlock > input {
+  height: 35px;
+  font-size: 14;
+  text-align: center;
+}

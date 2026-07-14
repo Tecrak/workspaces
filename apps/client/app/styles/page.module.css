@@ -1,0 +1,101 @@
+.main {
+  text-align: center;
+}
+.workspace {
+  background: rgba(175, 175, 175, 0.264);
+  border-radius: 10px 10px 0px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 4px;
+  padding: 5px;
+}
+.item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.wsNameBttn {
+  background: rgb(119, 119, 119);
+  font-size: 19px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 2px;
+  width: 350px;
+  transition: 0.2s;
+  position: relative;
+}
+.activeBttn {
+  border-radius: 10px;
+  transform: scale(1.05);
+}
+.wsNameBttn:hover {
+  border-radius: 10px;
+  transform: scale(1.05);
+}
+.boardBox {
+  background: rgb(12, 0, 72);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  bottom: 20px;
+  transition: 0.2s;
+  border-radius: 10px;
+  margin-top: 3px;
+}
+.activeWS {
+  opacity: 1;
+  pointer-events: all;
+  bottom: 0px;
+}
+.crudBttns {
+  width: 200px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  justify-content: space-around;
+  align-items: center;
+}
+.crudBttns > div > button {
+  background: rgb(67, 150, 67);
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  margin: 2px;
+}
+.crudBttns > div > button:hover {
+  background: rgb(255, 144, 144);
+}
+
+.boardContent > h3 {
+  padding: 6px 7px;
+}
+
+.taskBox {
+  width: 200px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.taskBox > li {
+  box-shadow: 0px 0px 0px 0.5px grey;
+  cursor: pointer;
+  width: 100%;
+  padding: 3px;
+}
+
+.blockingModal {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(252, 0, 0, 0.702);
+  z-index: 1000000;
+}

@@ -1,0 +1,57 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum WorkspaceRole {
+  EDITOR
+  VIEWER
+}
+
+model Workspace {
+  id     String  @id @default(uuid())
+  name   String
+  boards Board[]
+
+  user   User   @relation("OwnedWorkspaces", fields: [userId], references: [id], onDelete: Cascade)
+  userId String
+
+  members WorkspaceMember[]
+}
+model Board {
+  id          String    @id @default(uuid())
+  name        String
+  tasks       Task[]
+  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  order       Int
+  workspaceId String
+}
+
+model Task {
+  id      String @id @default(uuid())
+  title   String
+  board   Board  @relation(fields: [boardId], references: [id], onDelete: Cascade)
+  boardId String
+}
+model WorkspaceMember {
+  id          String        @id @default(uuid())
+  workspace   Workspace     @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  workspaceId String
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId      String
+  role        WorkspaceRole @default(VIEWER)
+
+  @@unique([workspaceId, userId])
+}
+
+model User {
+  id                String            @id @default(uuid())
+  email             String            @unique
+  password          String
+  workspaces        Workspace[]       @relation("OwnedWorkspaces")
+  memberships       WorkspaceMember[]
+}
