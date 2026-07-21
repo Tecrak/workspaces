@@ -1,14 +1,13 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { CreateUser } from "../../server/user";
+import { QueryKeys } from "@repo/types";
+import { useInvalidateQuery } from "./useInvalidateQuery";
 
 export function useAddUser() {
-  const queryClient = useQueryClient();
+  const invalidate = useInvalidateQuery();
+
   return useMutation({
     mutationFn: CreateUser,
-    onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: ["user"],
-      });
-    },
+    onSuccess: () => invalidate([QueryKeys.user]),
   });
 }

@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { WorkspaceMember } from "@repo/types";
-import { WorkspaceMembers } from "../../server/user";
+import { QueryKeys, WorkspaceMember } from "@repo/types";
+import { WorkspaceMembers } from "../../server/workspace";
 
 export function useWorkspaceMembers(workspaceId: string) {
   return useQuery<WorkspaceMember[]>({
-    queryKey: ["workspace-members", workspaceId],
+    queryKey: [QueryKeys.workspace_member, workspaceId],
     queryFn: () => WorkspaceMembers(workspaceId),
     enabled: !!workspaceId,
   });

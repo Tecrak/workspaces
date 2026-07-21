@@ -1,16 +1,16 @@
 "use client";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { AddWorkspace } from "../../server/workspace";
 import { useGetCurrentUser } from "./useGetCurrentUser";
+import { QueryKeys } from "@repo/types";
+import { useInvalidateQuery } from "./useInvalidateQuery";
 
 export function useAddWorkspace() {
-  const queryClient = useQueryClient();
+  const invalidate = useInvalidateQuery();
+
   const { data: currentUser } = useGetCurrentUser();
   return useMutation({
     mutationFn: AddWorkspace,
-    onSuccess: () =>
-      queryClient.invalidateQueries({
-        queryKey: ["workspace", currentUser?.userId],
-      }),
+    onSuccess: () => invalidate([QueryKeys.workspace, currentUser?.userId]),
   });
 }

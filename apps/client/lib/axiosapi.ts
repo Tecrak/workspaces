@@ -1,13 +1,18 @@
 import axios from "axios";
 
-export const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
+export const authApi = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_AUTH_API_URL,
   withCredentials: true,
 });
 
-api.interceptors.response.use(
-  (res) => res,
-  (err) => {
-    return Promise.reject(err);
-  },
-);
+export const workspaceApi = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_WORKSPACE_URL,
+  withCredentials: true,
+});
+
+[authApi, workspaceApi].forEach((instance) => {
+  instance.interceptors.response.use(
+    (res) => res,
+    (err) => Promise.reject(err),
+  );
+});
